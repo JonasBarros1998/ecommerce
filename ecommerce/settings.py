@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'chart',
     'gatewayPayments',
     'login',
+    'products'
     'shop'
 ]
 
