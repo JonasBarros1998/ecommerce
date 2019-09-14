@@ -3,4 +3,4 @@ from products.models import Products
 
 class ProductsSerializer(ModelSerializer):
     queryset = Products
-    fields = ["id", "name", "description"]
+    fields = ["id", "title", "price", "description"]
