@@ -29,3 +29,8 @@ README.md
 .pyc*
 
 venv
+
+chart/migrations/
+login/migrations/
+products/migrations/
+comments/migrations/
