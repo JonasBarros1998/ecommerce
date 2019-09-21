@@ -2,7 +2,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.viewsets import ModelViewSet
 from .productsSerializer import ProductsSerializer
-from products.models import Products
+from products.models import Product
 
 class ProductsViewSet(ModelViewSet):
 
@@ -16,10 +16,9 @@ class ProductsViewSet(ModelViewSet):
 
         return Response(productsSerializer.data, status = status.HTTP_201_CREATED)
 
+    def list(self, request):
 
-    def allProducts(self, request):
-
-        products = Products.objects.all()
+        products = Product.objects.all()
         productsSerializer = ProductsSerializer(products, many=True)
     
         return Response(productsSerializer.data, status=status.HTTP_200_OK) 
@@ -27,8 +26,7 @@ class ProductsViewSet(ModelViewSet):
 
     def findOneProduct(self, request, id):
 
-        product = Products.objects.filter(id = id)
+        product = Product.objects.filter(id = id)
         productSerializer = ProductsSerializer(product, many=True)
 
         return Response(productSerializer.data, status = status.HTTP_200_OK)
-
