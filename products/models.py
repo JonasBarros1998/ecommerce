@@ -9,6 +9,13 @@ class Product(models.Model):
     model = models.CharField(max_length = 50, null=False)
     amount = models.IntegerField(null=True)
 
+    mediaOne = models.ImageField(upload_to="products", null=False)
+    mediaTwo = models.ImageField(upload_to="products", null=False)
+    mediaThree = models.ImageField(upload_to="products", null=False)
+    mediaFour = models.ImageField(upload_to="products", null=True)
+    mediaFive = models.ImageField(upload_to="products", null=True)
+    mediaSix = models.ImageField(upload_to="products", null=True)
+
 
 class Cftv(models.Model):
 
@@ -16,7 +23,6 @@ class Cftv(models.Model):
     amountCameras = models.IntegerField(null=True)
     coaxialCableSize = models.FloatField(null=True)
     products = models.ForeignKey(Product, on_delete = models.CASCADE, related_name='product', related_query_name="products")   
-
 
 class SmartWatch(models.Model):
 
