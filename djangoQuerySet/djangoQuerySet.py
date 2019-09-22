@@ -1,7 +1,12 @@
+<<<<<<< HEAD
 from rest_framework.response import Response
 
 from .querysetValidate import djangoQuerysetValidate
 
+=======
+from .querysetValidate import djangoQuerysetValidate
+from rest_framework.response import Response
+>>>>>>> devCode
 import json
 
 """
