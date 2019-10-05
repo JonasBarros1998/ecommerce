@@ -37,13 +37,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'oauth2_provider',
     'rest_framework',
-    'chart',
     'comments',
+    'chart',
     'gatewayPayments',
     'login',
     'products',
-    'shop'
+    'shop',
+    'Users'
 ]
 
 MIDDLEWARE = [
@@ -111,6 +113,27 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+    ],
+     'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    )
+}
+
+OAUTH2_PROVIDER = {
+    'OAUTH2_BACKEND_CLASS': 'oauth2_provider.oauth2_backends.JSONOAuthLibCore',
+    # this is the list of available scopes
+    'SCOPES': 
+    {
+        'read': 'Read scope', 'write': 'Write scope', 'groups': 'Access to your groups'
+    }
+}
+
+ROOT_URLCONF = 'ecommerce.urls'
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -118,11 +141,16 @@ LANGUAGE_CODE = 'pt-br'
 
 TIME_ZONE = 'UTC'
 
-USE_I18N = True
+USE_TZ = True
+
+DATE_INPUT_FORMATS = ['%Y/%m/%d']
+#%Y/%m/%d
+
+TIME_ZONE = 'America/Sao_Paulo'
+
+USE_I18N = False
 
 USE_L10N = True
-
-USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)

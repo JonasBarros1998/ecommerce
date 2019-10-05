@@ -1,6 +1,10 @@
 from rest_framework.serializers import ModelSerializer
-from products.models import Products
+from products.models import Product
 
 class ProductsSerializer(ModelSerializer):
-    queryset = Products
-    fields = ["id", "name", "description"]
+
+    class Meta:
+        
+        model = Product
+
+        fields = ["id", "title", "price", "description", "make", "model", "amount"]
