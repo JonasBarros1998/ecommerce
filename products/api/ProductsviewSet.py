@@ -1,13 +1,21 @@
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.authentication import SessionAuthentication
+
+from oauth2_provider.contrib.rest_framework import OAuth2Authentication, TokenHasReadWriteScope
+
 from .productsSerializer import ProductsSerializer
 from products.models import Product
+
 
 class ProductsViewSet(ModelViewSet):
 
     serializer_class = ProductsSerializer
-        
+
+    authentication_classes = [OAuth2Authentication, SessionAuthentication]
+    permission_classes = [TokenHasReadWriteScope]
+
     def create(self, request, *args, **kwargs):
 
         productsSerializer = self.get_serializer(data = request.data)
