@@ -17,8 +17,8 @@ Pra que ela fique totalmente desviculada da aplicação como um tood
 é proibido haver algum import de algum modulo dentro dela
 
 Author: Jonas Florencio 
-Data: 21/09/2019
-Ultima atualização: 21/09/2019
+Data: 01/10/2019
+Ultima atualização: 01/10/2019
 """
 
 class djangoQuerySet:
@@ -26,7 +26,7 @@ class djangoQuerySet:
         self.__djangoQuerysetValidate = djangoQuerysetValidate()
 
 
-    def listFull(self, model, classSerializer, many = None, read_only = False):
+    def listFull(self, model, classSerializer, many = True, read_only = False):
         """
         model: Nome da modelagem da aplicação
         classSerializer: Nome do serializador que voce está usado
@@ -41,8 +41,9 @@ class djangoQuerySet:
 
         else:
             queryset = model.objects.all()
-            serializer = classSerializer(queryset, many = many, read_only = read_only)
 
+            serializer = classSerializer(queryset, many = many, read_only = read_only)
+            
             return serializer.data
 
     def filterOne(self, ids, model, classSerializer, many=True, read_only = False):
@@ -87,8 +88,9 @@ class djangoQuerySet:
             serializer = classSerializer(queryset, many = many, read_only = read_only)
 
             return serializer.data
+    
+    def querySetSerializer(self, queryset, classSerializer, 
+                                                many=True, read_only = False):
         
-        
-
-
-
+        serializer = classSerializer(queryset, many=many, read_only = read_only)
+        return serializer.data
