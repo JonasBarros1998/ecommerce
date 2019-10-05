@@ -1,13 +1,20 @@
+<<<<<<< HEAD
+from rest_framework.response import Response
+
+from .querysetValidate import djangoQuerysetValidate
+
+=======
 from .querysetValidate import djangoQuerysetValidate
 from rest_framework.response import Response
+>>>>>>> devCode
 import json
 
 """
 Todos os modulos da aplicação que consite em salvar, 
 editar, deletar e listar, tera qiefazer uso dessa classe.. 
 
-Pra que ela fiqiue totalmente desviculada da aplicação como um tood
-é porobido haver algum import de algum modulo dentro dela
+Pra que ela fique totalmente desviculada da aplicação como um tood
+é proibido haver algum import de algum modulo dentro dela
 
 Author: Jonas Florencio 
 Data: 01/10/2019
