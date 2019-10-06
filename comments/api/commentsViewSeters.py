@@ -6,7 +6,6 @@ from rest_framework.authentication import SessionAuthentication
 from oauth2_provider.contrib.rest_framework import OAuth2Authentication, TokenHasScope, TokenHasReadWriteScope
 
 from djangoQuerySet.djangoQuerySet import djangoQuerySet
-from utilities.Code.create.codeCreate import CodeCreate
 
 from comments.models import Comments
 from comments.api.commentsSerializer import CommentsSerializer, CommentsProductsSerializer

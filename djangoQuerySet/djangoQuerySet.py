@@ -1,12 +1,6 @@
-<<<<<<< HEAD
-from rest_framework.response import Response
 
 from .querysetValidate import djangoQuerysetValidate
-
-=======
-from .querysetValidate import djangoQuerysetValidate
 from rest_framework.response import Response
->>>>>>> devCode
 import json
 
 """
@@ -26,7 +20,8 @@ class djangoQuerySet:
         self.__djangoQuerysetValidate = djangoQuerysetValidate()
 
 
-    def listFull(self, model, classSerializer, many = True, read_only = False):
+    def listFull(self, model, classSerializer:"Espera receber uma classe serializadora", 
+                               many = True, read_only = False):
         """
         model: Nome da modelagem da aplicação
         classSerializer: Nome do serializador que voce está usado
