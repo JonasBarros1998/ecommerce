@@ -1,4 +1,5 @@
 from django.db import models
+import PIL
 
 class Product(models.Model):
     
@@ -26,12 +27,15 @@ class Cftv(models.Model):
 
 class SmartWatch(models.Model):
 
-    color = models.CharField(max_length = 50, null=True)
+    waterProof = models.BooleanField(null=False)
+    color = models.CharField(max_length = 20, null=False)
+    heartRate = models.CharField(max_length=120, null=False)
     products = models.OneToOneField(Product, on_delete = models.CASCADE)
-
 
 class AirPhones(models.Model):
 
     waterProof = models.BooleanField(null=False)
     batery = models.CharField(max_length=50, null=False)
     products = models.OneToOneField(Product, on_delete = models.CASCADE)
+
+    

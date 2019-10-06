@@ -20,7 +20,8 @@ class djangoQuerySet:
         self.__djangoQuerysetValidate = djangoQuerysetValidate()
 
 
-    def listFull(self, model, classSerializer, many = True, read_only = False):
+    def listFull(self, model, classSerializer:"Espera receber uma classe serializadora", 
+                               many = True, read_only = False):
         """
         model: Nome da modelagem da aplicação
         classSerializer: Nome do serializador que voce está usado
