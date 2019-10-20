@@ -34,12 +34,19 @@ class SmartWathViewSet(ModelViewSet):
 
         return Response(request.data, status = status.HTTP_200_OK)
 
-    def list(self, request):
-
-        serializer = self.__djangoQuerySet.listFull(self.Model, self.serializer_class, many=True)
+    def list(self, request = None):
+        
+        serializer = self.__djangoQuerySet.listFull(self.Model, self.serializer_class)
         return Response(serializer, status = status.HTTP_200_OK)
     
     def findOne(self, request, smart_watch_ids):
 
         serializer = self.__djangoQuerySet.filterOne(smart_watch_ids, self.Model, self.serializer_class)
         return Response(serializer, status = status.HTTP_200_OK)
+    
+    def findMakeAll(self, request, smart_watch_make):
+
+        queryset = self.Model.objects.filter(products__make = smart_watch_make)
+        
+        smartWatch = self.__djangoQuerySet.querySetSerializer(queryset, SmartWatchSerializer)
+        return Response(smartWatch, status=status.HTTP_200_OK)

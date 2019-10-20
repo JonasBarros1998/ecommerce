@@ -25,20 +25,28 @@ class AirPhonesViewSet(ModelViewSet):
 
         airPhones = AirPhones(
             waterProof = request.data["waterProof"],
-            batery = request.data["batery"],
+            bateryPhone = request.data["bateryPhone"],
+            bateryCase = request.data["bateryCase"],
+            voiceControl = request.data["voiceControl"],
             products_id = request.data["products"]
-        )
+        ) 
 
         airPhones.save()
 
         return Response(request.data, status=status.HTTP_201_CREATED) 
 
-    def list(self, request):
-        
-        serializer = self.__djangoQuerySet.listFull(self.Model, self.serializer_class, many=True)
+    def list(self, request = None):
+        serializer = self.__djangoQuerySet.listFull(self.Model, self.serializer_class)
         return Response(serializer, status = status.HTTP_200_OK)
     
     def findOne(self, request, air_phone_ids):
 
-        serializer = self.__djangoQuerySet.filterOne(air_phone_ids, self.Model, self.serializer_class, many=True)
+        serializer = self.__djangoQuerySet.filterOne(air_phone_ids, self.Model, self.serializer_class)
         return Response(serializer, status = status.HTTP_200_OK)
+    
+    def findMakeAll(self, request, air_phone_make):
+       
+        queryset = self.Model.objects.filter(product__make = air_phone_make)
+        airPhone = self.__djangoQuerySet.querySetSerializer(queryset, AirPhoneSerializer)
+        
+        return Response(airPhone, status = status.HTTP_200_OK)

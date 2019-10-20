@@ -6,5 +6,23 @@ class ProductsSerializer(ModelSerializer):
     class Meta:
         
         model = Product
+        fields = [
+            "id", 
+            "title", 
+            "price", 
+            "description", 
+            "make", 
+            "model", 
+            "amount"]
+        
+class ProductsSerializerMake(ModelSerializer):
 
-        fields = ["id", "title", "price", "description", "make", "model", "amount"]
+    class Meta:
+        model = Product
+        fields = ['make']
+
+class ProductsSerializerCategories(ModelSerializer):
+
+    class Meta:
+        model = Product
+        fields = ['categories']

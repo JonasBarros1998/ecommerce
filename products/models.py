@@ -9,6 +9,7 @@ class Product(models.Model):
     make = models.CharField(max_length=100, null = False)
     model = models.CharField(max_length = 50, null=False)
     amount = models.IntegerField(null=True)
+    categories = models.CharField(max_length = 50, null=True)
 
     mediaOne = models.ImageField(upload_to="products", null=False)
     mediaTwo = models.ImageField(upload_to="products", null=False)
@@ -35,7 +36,9 @@ class SmartWatch(models.Model):
 class AirPhones(models.Model):
 
     waterProof = models.BooleanField(null=False)
-    batery = models.CharField(max_length=50, null=False)
-    products = models.OneToOneField(Product, on_delete = models.CASCADE)
+    bateryPhone = models.CharField(max_length=50, null=False)
+    bateryCase = models.CharField(max_length=30, null=False)
+    voiceControl = models.BooleanField(null=False) 
+    products = models.OneToOneField(Product, on_delete = models.CASCADE, related_query_name = 'products')
 
-    
+        
