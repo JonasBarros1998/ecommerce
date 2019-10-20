@@ -24,7 +24,7 @@ class CftvViewSet(ModelViewSet, djangoQuerySet):
 
         return Response(cftvSerializer.data, status = status.HTTP_200_OK)
     
-    def list(self, request, *args, **kwargs):
+    def list(self, request = None, *args, **kwargs):
 
         cftvSerializer = self.__djangoQuerySet.listFull(self.model, CftvSerializer)
         return Response(cftvSerializer, status = status.HTTP_200_OK)
@@ -41,5 +41,5 @@ class CftvViewSet(ModelViewSet, djangoQuerySet):
     
     def findMake(self, request, make):
 
-        cftvSerializer = self.__djangoQuerySet.filterMake(make, self.model, CftvSerializer)
+        cftvSerializer = self.__djangoQuerySet.filterString(make, self.model, CftvSerializer)
         return Response(cftvSerializer, status = status.HTTP_200_OK)

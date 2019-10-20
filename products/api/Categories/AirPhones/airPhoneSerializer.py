@@ -13,6 +13,8 @@ class AirPhoneSerializer(ModelSerializer):
         fields = [
             'id',
             'waterProof',
-            'batery',
+            'bateryPhone',
+            'bateryCase',
+            'voiceControl',
             'products'
         ]

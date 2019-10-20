@@ -1,33 +1,14 @@
-
 from .querysetValidate import djangoQuerysetValidate
 from rest_framework.response import Response
 import json
-
-"""
-Todos os modulos da aplicação que consite em salvar, 
-editar, deletar e listar, tera qiefazer uso dessa classe.. 
-
-Pra que ela fique totalmente desviculada da aplicação como um tood
-é proibido haver algum import de algum modulo dentro dela
-
-Author: Jonas Florencio 
-Data: 01/10/2019
-Ultima atualização: 01/10/2019
-"""
+import sys
 
 class djangoQuerySet:
+
     def __init__(self):
         self.__djangoQuerysetValidate = djangoQuerysetValidate()
 
-
-    def listFull(self, model, classSerializer:"Espera receber uma classe serializadora", 
-                               many = True, read_only = False):
-        """
-        model: Nome da modelagem da aplicação
-        classSerializer: Nome do serializador que voce está usado
-        many: é aceitavel multiplos vaores
-        read_only: Num sei o que é ainda
-        """
+    def listFull(self, model, classSerializer:"class serializer", many = True, read_only = False):
 
         self.__instance = hasattr(model, '__name__')
 
@@ -36,12 +17,10 @@ class djangoQuerySet:
 
         else:
             queryset = model.objects.all()
-
             serializer = classSerializer(queryset, many = many, read_only = read_only)
-            
             return serializer.data
 
-    def filterOne(self, ids, model, classSerializer, many=True, read_only = False):
+    def filterOne(self, ids, model, classSerializer:"class serializer", many=True, read_only = False):
         
         self.__instance = hasattr(model, '__name__')
 
@@ -54,8 +33,7 @@ class djangoQuerySet:
 
             return serializer.data
     
-    def filterPrice(self, price, model, classSerializer,
-                                   many = True, read_only = False):
+    def filterPrice(self, price, model, classSerializer:"class serializer", many = True, read_only = False):
         
         price = price.split("ate")
         formatePrice = json.dumps(price)
@@ -71,7 +49,14 @@ class djangoQuerySet:
 
         return serializer.data
     
-    def filterMake(self, make, model, classSerializer, many = True, read_only = False):
+
+    def filterString(self, make, model, classSerializer:"class serializer", many = True, read_only = False, azedo = object, **kwargs):
+
+        try:
+            selectFilter = ("make", "model", "title")
+            valueFilter = selectFilter.index(make)
+        except ValueError:
+            self.__djangoQuerysetValidate.checkFilter()
 
         self.__instance = hasattr(model, "__name__")
 
@@ -79,13 +64,40 @@ class djangoQuerySet:
             self.__djangoQuerysetValidate.checkInstance('model', self.__instance)
         
         else:
-            queryset = model.objects.filter(products__make = make)
-            serializer = classSerializer(queryset, many = many, read_only = read_only)
+            if(valueFilter == 0):
+                queryset = model.objects.filter(products__make = make)
+                serializer = classSerializer(queryset, many = many, read_only = read_only)
+
+            elif(valueFilter == 1):
+                queryset = model.objects.filter(products__model = make)
+                serializer = classSerializer(queryset, many = many, read_only = read_only)
+            
+            elif(valueFilter == 2):
+                queryset = model.objects.filter(products__title = make)
+                serializer = classSerializer(queryset, many = many, read_only = read_only)
 
             return serializer.data
     
-    def querySetSerializer(self, queryset, classSerializer, 
-                                                many=True, read_only = False):
+    def filterColumn(self, nameColumn, model, classSerializer:"class serializer", repeat = False, many = True, read_only = False):
         
-        serializer = classSerializer(queryset, many=many, read_only = read_only)
+        self.__instance = hasattr(model, "__name__")
+
+        if(self.__instance == False):
+            self.__djangoQuerysetValidate.checkInstance('model', self.__instance)
+        
+        else:
+
+            if(repeat):
+                queryset = model.objects.all().values(nameColumn)
+                serializer = classSerializer(queryset, many = many, read_only = read_only)
+                return serializer.data
+
+            else:
+                queryset = model.objects.all().values(nameColumn).distinct(nameColumn)
+                serializer = classSerializer(queryset, many = many, read_only = read_only)
+                return serializer.data
+
+    def querySetSerializer(self, queryset, classSerializer:"class serializer", many=True, read_only = False):
+        
+        serializer = classSerializer(queryset, many=many, read_only=read_only)
         return serializer.data
