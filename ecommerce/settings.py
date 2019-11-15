@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'comments',
     'chart',
     'gatewayPayments',
-    'login',
+    'authentication',
     'products',
     'shop',
     'Users'
@@ -117,9 +117,11 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
     ],
-     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    )
+    # Ativando essa tupla, fará que todas as classes da aplicação terão 
+    # obrigatoriamente que fazer authenticação...
+    # 'DEFAULT_PERMISSION_CLASSES': (
+    #    'rest_framework.permissions.IsAuthenticated',
+    #)
 }
 
 OAUTH2_PROVIDER = {

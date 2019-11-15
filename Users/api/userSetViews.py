@@ -9,15 +9,13 @@ class UsersViewSet(ModelViewSet):
     def create(self, request, *args, **kwargs):
 
         user = {
-            "username": request.data["username"],
-            "email": request.data["email"],
+            "username": request.data["email"],
             "password": request.data["password"]
         }
 
         User.objects.create_user(
             username = user["username"],
-            email = user["email"],
             password=user["password"]
         )
 
-        return Response({"Novo usuario adicionado": user["email"]}, status=status.HTTP_201_CREATED)
+        return Response({"Novo usuario adicionado": user["username"]}, status=status.HTTP_201_CREATED)
