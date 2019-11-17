@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 class Register(models.Model):
 
-    date = models.DateField(null=False)
+    birthDate = models.DateField(null=False)
     genre = models.CharField(max_length = 50, null=False)
     cpf = models.FloatField(null=False)
     phone = models.FloatField(max_length=80, null=False)
