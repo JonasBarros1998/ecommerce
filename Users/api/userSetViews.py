@@ -11,7 +11,7 @@ class UsersViewSet(ModelViewSet):
         email = request.data['email']
         email = email.lower()
 
-        #verificando se o email do usuario existe.
+        #verifica se o email do usuario existe.
         user = User.objects.filter(username = email).exists()
 
         if(user == True):
