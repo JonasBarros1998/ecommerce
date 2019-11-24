@@ -13,7 +13,7 @@
 */migrations/__init__.py
 
 chart/migrations/
-login/migrations/
+authentication/migrations/
 products/migrations/
 comments/migrations/
 
