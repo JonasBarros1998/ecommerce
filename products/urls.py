@@ -21,8 +21,8 @@ urlpatterns = [
     path('products/ctfv/make/<str:make>', CftvViewSet.as_view({'get': 'findMake'}), name='findMake'),
     
     path('products/airPhone', AirPhonesViewSet.as_view({'get':'list', 'post':'create'}), name='airPhone'),
-    path('products/airPhone/<int: air_phone_ids>', AirPhonesViewSet.as_view({'get':'findOne'}), name='findOneAirPhones'),
-    path('products/airPhone/<str: air_phone_make>', AirPhonesViewSet.as_view({'get':'findMakeAll'}), name="airPhoneMake"),
+    path('products/airPhone/<int:air_phone_ids>', AirPhonesViewSet.as_view({'get':'findOne'}), name='findOneAirPhones'),
+    path('products/airPhone/<str:air_phone_make>', AirPhonesViewSet.as_view({'get':'findMakeAll'}), name="airPhoneMake"),
 
     path('products/smartWatch', SmartWathViewSet.as_view({'post':'create', 'get':'list'}), name='smartWatch'),
     path('products/smartWatch/<int:smart_watch_ids>', SmartWathViewSet.as_view({'get':'findOne'}), name='findOneSmartWatch'),

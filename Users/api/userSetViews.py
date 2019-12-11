@@ -15,7 +15,8 @@ class UsersViewSet(ModelViewSet):
         user = User.objects.filter(username = email).exists()
 
         if(user == True):
-            return Response({"mensage": "email exists"}, status = status.HTTP_409_CONFLICT)
+            return Response({"mensage": "email exists", "status": status.HTTP_409_CONFLICT}, 
+                                        status = status.HTTP_409_CONFLICT)
         
         else:
             return Response({"mensage": "email approved"}, status = status.HTTP_200_OK)
@@ -28,7 +29,7 @@ class UsersViewSet(ModelViewSet):
         }
 
         User.objects.create_user(
-            username = user["username"],
+            username=user["username"],
             password=user["password"]
         )
 
