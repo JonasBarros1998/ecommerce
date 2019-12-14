@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'authentication',
     'products',
     'shop',
-    'Users'
+    'users'
 ]
 
 MIDDLEWARE = [
@@ -71,7 +71,7 @@ CORS_ORIGIN_WHITELIST = [
 
 #CORS_ORIGIN_ALLOW_ALL = True
 
-#CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_ALLOW_ALL = True
 
 TEMPLATES = [
     {

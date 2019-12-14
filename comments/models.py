@@ -5,7 +5,7 @@ from products.models import Product
 class Comments(models.Model):
     
     #Todo comentario tem um usuario, e todo o usuario  tem um comentario
-    user = models.ForeignKey(User, on_delete = models.CASCADE)
+   # user = models.ForeignKey(User, on_delete = models.CASCADE)
     
     #Um produto tem varios comentarios, e um comentario está relacionado a um produto
     product = models.ManyToManyField(Product)
