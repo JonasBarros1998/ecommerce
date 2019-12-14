@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'authentication',
     'products',
     'shop',
-    'Users'
+    'users'
 ]
 
 MIDDLEWARE = [
