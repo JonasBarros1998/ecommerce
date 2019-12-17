@@ -31,6 +31,8 @@ class UserView(ViewSet):
             Por conta disso ao cadastrar um usuario, invertemos as informações,
         o campo username terá o e-mail do usuario, com isso, conseguimos que
         o login seja feito com o e-mail e não com o nome de usuario. '''
+       
+
         user = User.objects.create_user(
             username=request.data['user']['email'],
             password=request.data['user']['password']
@@ -48,4 +50,4 @@ class UserView(ViewSet):
             )
         registerUser.save()
 
-        return Response(request.data, status=status.HTTP_201_CREATED)
+        return Response({'status': "create"}, status=status.HTTP_201_CREATED)

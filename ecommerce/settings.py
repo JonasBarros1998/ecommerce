@@ -158,8 +158,9 @@ TIME_ZONE = 'UTC'
 
 USE_TZ = True
 
-DATE_INPUT_FORMATS = ['%Y/%m/%d']
+DATE_INPUT_FORMATS = ['%Y-%m-%d']
 #%Y/%m/%d
+#%m/%d/%Y
 
 TIME_ZONE = 'America/Sao_Paulo'
 
