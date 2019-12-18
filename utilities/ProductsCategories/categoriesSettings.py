@@ -1,4 +1,10 @@
 from utilities.Erors.settingsCategories.settingsCategoriesErros import CategoriesError
+"""
+    O modulo tem a função se caso precisarmos utilizar 
+    alguma viewSet, em outro componente, não precisamos 
+    importar diretamente, apenas utilizar o metodo 
+    mothodsCategories 
+"""
 
 class AllCategories:
 

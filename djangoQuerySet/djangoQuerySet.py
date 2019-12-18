@@ -8,6 +8,7 @@ class djangoQuerySet:
     def __init__(self):
         self.__djangoQuerysetValidate = djangoQuerysetValidate()
 
+     #Filtrar todos os produtos apartir de um item
     def listFull(self, model, classSerializer:"class serializer", many = True, read_only = False):
 
         self.__instance = hasattr(model, '__name__')
@@ -20,6 +21,7 @@ class djangoQuerySet:
             serializer = classSerializer(queryset, many = many, read_only = read_only)
             return serializer.data
 
+    #Filtrar somente um produto, usado para reinderização de detalhes de um produto
     def filterOne(self, ids, model, classSerializer:"class serializer", many=True, read_only = False):
         
         self.__instance = hasattr(model, '__name__')
@@ -33,6 +35,7 @@ class djangoQuerySet:
 
             return serializer.data
     
+    #Filtrar por preços
     def filterPrice(self, price, model, classSerializer:"class serializer", many = True, read_only = False):
         
         price = price.split("ate")
@@ -50,7 +53,8 @@ class djangoQuerySet:
         return serializer.data
     
 
-    def filterString(self, make, model, classSerializer:"class serializer", many = True, read_only = False, azedo = object, **kwargs):
+    #Usado para filtragem por marca, modelo ou titulo do produto(usado gerelamente no campo de pesquisa)
+    def filterString(self, make, model, classSerializer:"class serializer", many = True, read_only = False, **kwargs):
 
         try:
             selectFilter = ("make", "model", "title")
@@ -78,6 +82,7 @@ class djangoQuerySet:
 
             return serializer.data
     
+    #Filtrar por coluna
     def filterColumn(self, nameColumn, model, classSerializer:"class serializer", repeat = False, many = True, read_only = False):
         
         self.__instance = hasattr(model, "__name__")

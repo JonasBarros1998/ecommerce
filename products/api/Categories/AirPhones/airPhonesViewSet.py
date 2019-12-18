@@ -46,7 +46,5 @@ class AirPhonesViewSet(ModelViewSet):
     
     def findMakeAll(self, request, air_phone_make):
        
-        queryset = self.Model.objects.filter(product__make = air_phone_make)
-        airPhone = self.__djangoQuerySet.querySetSerializer(queryset, AirPhoneSerializer)
-        
+        airPhone = self.__djangoQuerySet.filterString(air_phone_make, self.Model, self.serializer_class)
         return Response(airPhone, status = status.HTTP_200_OK)

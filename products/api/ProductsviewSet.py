@@ -9,7 +9,6 @@ from .productsSerializer import ProductsSerializer, ProductsSerializerMake, Prod
 
 from products.models import Cftv, SmartWatch, AirPhones
 
-
 from products.models import Product
 from djangoQuerySet.djangoQuerySet import djangoQuerySet
 from utilities.Erors.settingsCategories.settingsCategoriesErros import CategoriesError
