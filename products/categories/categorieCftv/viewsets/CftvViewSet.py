@@ -2,31 +2,36 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from rest_framework import status
 
-from products.models import Cftv
-from .CftvSerializer import CftvSerializer
+from rest_framework.parsers import FileUploadParser
 
+from products.models import Cftv, Product
+from ..serializer.CftvSerializer import CftvSerializer
 from djangoQuerySet.djangoQuerySet import djangoQuerySet
-import json
 
-class CftvViewSet(ModelViewSet, djangoQuerySet):
+class CftvViewSet(ModelViewSet):
 
     serializer_class = CftvSerializer             
     model = Cftv
+    parser_class = [FileUploadParser]
 
     def __init__(self):
         self.__djangoQuerySet = djangoQuerySet() 
 
     def create(self, request,  *args, **kwargs):
-        
-        cftvSerializer = self.get_serializer(data = request.data)
-        cftvSerializer.is_valid(raise_exception = True)
-        self.perform_create(cftvSerializer)
 
-        return Response(cftvSerializer.data, status = status.HTTP_200_OK)
+        print(request.data)
+        
+        product = Product(
+            mediaOne = request.data["mediaOne"],
+            mediaTwo = request.data["mediaTwo"]
+        )
+        product.save()
+
+        return Response({"status":"OK"}, status = status.HTTP_201_CREATED)
     
     def list(self, request = None, *args, **kwargs):
 
-        cftvSerializer = self.__djangoQuerySet.listFull(self.model, CftvSerializer)
+        cftvSerializer = self.__djangoQuerySet.listFull(self.model, self.serializer_class)
         return Response(cftvSerializer, status = status.HTTP_200_OK)
 
     def findOne(self, request, ids):

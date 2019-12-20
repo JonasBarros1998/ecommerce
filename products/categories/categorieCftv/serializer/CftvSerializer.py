@@ -6,8 +6,12 @@ from products.api.productsSerializer import ProductsSerializer
 class CftvSerializer(ModelSerializer):
 
     products = ProductsSerializer(read_only=True)
-    product = PrimaryKeyRelatedField(queryset = Product.objects.all(), source="products")
 
     class Meta:
         model = Cftv
-        fields = ["id", "resolution", "amountCameras", "coaxialCableSize","product", "products"]
+        fields = [
+            "id", 
+            "resolution", 
+            "amountCameras", 
+            "coaxialCableSize",
+            "products"]
