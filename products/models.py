@@ -3,20 +3,20 @@ import PIL
 
 class Product(models.Model):
     
-    title = models.CharField(max_length=200, null=False)
-    price = models.FloatField(null=False)
-    description = models.TextField(null=False)
-    make = models.CharField(max_length=100, null = False)
-    model = models.CharField(max_length = 50, null=False)
+    title = models.CharField(max_length=200, null=True)
+    price = models.FloatField(null=True)
+    description = models.TextField(null=True)
+    make = models.CharField(max_length=100, null=True)
+    model = models.CharField(max_length=50, null=True)
     amount = models.IntegerField(null=True)
-    categories = models.CharField(max_length = 50, null=True)
+    categories = models.CharField(max_length=50, null=True)
 
-    mediaOne = models.ImageField(upload_to="products", null=False)
-    mediaTwo = models.ImageField(upload_to="products", null=False)
-    mediaThree = models.ImageField(upload_to="products", null=False)
-    mediaFour = models.ImageField(upload_to="products", null=True)
-    mediaFive = models.ImageField(upload_to="products", null=True)
-    mediaSix = models.ImageField(upload_to="products", null=True)
+    mediaOne = models.ImageField(null=True)
+    mediaTwo = models.ImageField(null=True)
+    mediaThree = models.ImageField(null=True)
+    mediaFour = models.ImageField(null=True)
+    mediaFive = models.ImageField(null=True)
+    mediaSix = models.ImageField(null=True)
 
 
 class Cftv(models.Model):
@@ -24,7 +24,9 @@ class Cftv(models.Model):
     resolution = models.CharField(max_length=50, null=True)
     amountCameras = models.IntegerField(null=True)
     coaxialCableSize = models.FloatField(null=True)
-    products = models.ForeignKey(Product, on_delete = models.CASCADE, related_name='product', related_query_name="products")   
+    products = models.OneToOneField(Product, on_delete = models.CASCADE, 
+                                related_name='product', 
+                                related_query_name="products")   
 
 class SmartWatch(models.Model):
 
