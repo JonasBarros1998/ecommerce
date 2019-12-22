@@ -18,32 +18,28 @@ class SaveFileBucket(ABC):
 
     """
     ***Function Params***
-    bucketName: Nome do bucket
-    fileObject: Objeto com o arquivo para que o upload possa ser feito
-    fileName: Como o arquivo deverá ser nomeado
+    bucket: Nome do bucket
+    requestImages: Dict com as imagens a ser salva no s3
+    item_dict[1]: A imagem a ser aberta com o PILLOW
+    item_dict[0]: O nome da imagem a ser salva no bucket
     """
     @abstractmethod
     def requestImages(self, bucket, requestImages={}):
-
-        copyRequest = requestImages.copy()
-        print(copyRequest[0])
-        #dictValues = convertRequestToDict.value()
-        countDict = len(copyRequest)
-
-        """
-        for item_dict in round(countDict):
-            itemImage = requestDict[item_dict]
-            image = Image.open(itemImage)
+        _nameImage = 0
+        _image = 1
+        for item_dict in iter(requestImages.items()):   
+            image = Image.open(item_dict[_image])
             byteImage = io.BytesIO()
             image.save(byteImage, "JPEG")
             byteImage.seek(0)
-            self.saveImages(byteImage, key, bucket)
-        """
+            self.saveImages(byteImage, item_dict[_nameImage], bucket)
 
+    
     def saveImages(self, body, key, bucket):
 
         try:
-            uploadFile = self.__s3Client.put_object(Body=body,
+            uploadFile = self.__s3Client.put_object(ACL='public-read',
+                                                    Body=body,
                                                     Key=key,
                                                     Bucket=bucket)
             logging.info("A imagem foi salva")
