@@ -1,16 +1,17 @@
-from rest_framework.viewsets import ModelViewSet
-from rest_framework.response import Response
-from rest_framework import status
-from PIL import Image
 import io
 import os
 import shutil
+from PIL import Image
+
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.viewsets import ModelViewSet
 from rest_framework.parsers import FileUploadParser
 
 from products.models import Cftv, Product
 from ..serializer.CftvSerializer import CftvSerializer
-from djangoQuerySet.djangoQuerySet import djangoQuerySet
 from _amazon.s3.saveImagesBucket import SaveFileBucket
+from djangoQuerySet.djangoQuerySet import djangoQuerySet
 
 
 class CftvViewSet(SaveFileBucket, ModelViewSet):
