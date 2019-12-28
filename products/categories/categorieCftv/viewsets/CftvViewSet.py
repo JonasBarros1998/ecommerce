@@ -13,7 +13,6 @@ from ..serializer.CftvSerializer import CftvSerializer
 from _amazon.s3.saveImagesBucket import SaveFileBucket
 from djangoQuerySet.djangoQuerySet import djangoQuerySet
 
-
 class CftvViewSet(SaveFileBucket, ModelViewSet):
 
     serializer_class = CftvSerializer
