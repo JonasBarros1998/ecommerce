@@ -1,6 +1,7 @@
 import io
 import os
 import shutil
+import ast
 from PIL import Image
 
 from rest_framework import status
@@ -9,11 +10,11 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.parsers import FileUploadParser
 
 from products.models import Cftv, Product
-from ..serializer.CftvSerializer import CftvSerializer
 from _amazon.s3.saveImagesBucket import SaveFileBucket
+from ..serializer.CftvSerializer import CftvSerializer
 from djangoQuerySet.djangoQuerySet import djangoQuerySet
 
-class CftvViewSet(SaveFileBucket, ModelViewSet):
+class CftvViewSet(SaveFileBucket,ModelViewSet):
 
     serializer_class = CftvSerializer
     model = Cftv
@@ -29,19 +30,21 @@ class CftvViewSet(SaveFileBucket, ModelViewSet):
     def create(self, request,  *args, **kwargs):
 
         product = Product(
-            title = request.data["title"],
-            price = request.data["price"],
-            description = request.data["description"],
-            make = request.data["make"],
-            model = request.data["model"],
-            amount = request.data["amount"],
-
-            mediaOne=request.data["mediaOne"],
-            mediaTwo=request.data["mediaTwo"],
-            mediaThree=request.data["mediaThree"],
-            mediaFour=request.data["mediaFour"],
-            mediaFive=request.data["mediaFive"],
-            mediaSix=request.data["mediaSix"])
+            title = request.data['products']["title"],
+            price = request.data['products']["price"],
+            description = request.data['products']['description'],
+            fullDescription = request.data['products']['fullDescription'],
+            make = request.data['products']["make"],
+            model = request.data['products']["model"],
+            amount = request.data['products']["amount"],
+            especification = request.data['products']['especification'],
+            categories = request.data['products']['categories'],
+            mediaOne=request.data['products']["mediaOne"],
+            mediaTwo=request.data['products']["mediaTwo"],
+            mediaThree=request.data['products']["mediaThree"],
+            mediaFour=request.data['products']["mediaFour"],
+            mediaFive=request.data['products']["mediaFive"],
+            mediaSix=request.data['products']["mediaSix"])
         product.save()
 
         cftv = Cftv(
@@ -53,8 +56,8 @@ class CftvViewSet(SaveFileBucket, ModelViewSet):
 
         # Depois que as imagens forma salvas no bucket,
         # temos que exclui-las, no diretorio do projeto
+        """
         shutil.rmtree('_imagesAndVideos')
-
         dictRequestImages = {
             product.mediaOne.name: request.data["mediaOne"],
             product.mediaTwo.name: request.data["mediaTwo"],
@@ -63,9 +66,9 @@ class CftvViewSet(SaveFileBucket, ModelViewSet):
             product.mediaFive.name: request.data["mediaFive"],
             product.mediaSix.name: request.data["mediaSix"]
         }
-
         self.requestImages('code-images-and-videos',
                            requestImages=dictRequestImages)
+        """
 
         return Response({"status": "OK"}, status=status.HTTP_201_CREATED)
 

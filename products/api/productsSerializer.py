@@ -10,10 +10,13 @@ class ProductsSerializer(ModelSerializer):
             "id", 
             "title", 
             "price", 
+            "fullDescription",
             "description", 
             "make", 
             "model", 
-            "amount"]
+            "amount",
+            "especification",
+            "categories"]
         
 class ProductsSerializerMake(ModelSerializer):
 
