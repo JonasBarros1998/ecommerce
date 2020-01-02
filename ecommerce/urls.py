@@ -8,5 +8,5 @@ urlpatterns = [
     path('jm-ecommerce/', include('comments.urls')),
     path('jm-ecommerce/', include('users.urls')),
     path('jm-ecommerce/', include('slides.urls')),
-    path('jm-ecommerce/authentication/', include('oauth2_provider.urls'))
+    path('jm-ecommerce/', include('authentication.urls'))
 ]

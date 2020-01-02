@@ -27,27 +27,23 @@ class UserView(ViewSet):
         ''' Por padrão o django trabalha com
         autenticação com o nome do usuario, porém nos queremos trabalhar com
         email do usuario, quando ele querer logar no sistema.
-
             Por conta disso ao cadastrar um usuario, invertemos as informações,
         o campo username terá o e-mail do usuario, com isso, conseguimos que
         o login seja feito com o e-mail e não com o nome de usuario. '''
        
-
         user = User.objects.create_user(
             username=request.data['user']['email'],
-            password=request.data['user']['password']
-            )
+            password=request.data['user']['password'])
 
         registerUser = RegisterUser(
             fullName = request.data["fullName"],
-             birthDate = request.data["birthDate"],
+            birthDate = request.data["birthDate"],
             male = request.data["male"],
             feminine = request.data["feminine"],
             cpf = request.data["cpf"],
             smartPhone = request.data["smartphone"],
             phone = request.data["phone"],
-            user = user
-            )
+            user = user)
         registerUser.save()
 
         return Response({'status': "create"}, status=status.HTTP_201_CREATED)

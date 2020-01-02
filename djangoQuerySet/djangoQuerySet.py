@@ -90,7 +90,8 @@ class djangoQuerySet:
                 queryset, many=many, read_only=read_only)
             return serializer.data
 
-    def querySetSerializer(self, queryset, classSerializer: "class serializer", many=True, read_only=False):
+    def querySetSerializer(self, queryset, classSerializer: "class serializer", 
+                            many=True, read_only=False):
 
         serializer = classSerializer(queryset, many=many, read_only=read_only)
         return serializer.data
