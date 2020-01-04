@@ -3,9 +3,9 @@ from django.contrib.auth.models import User
 
 class RegisterUser(models.Model):
     user = models.OneToOneField(User, 
-                                                        on_delete=models.CASCADE, 
-                                                        primary_key=True)
-    fullName =models.CharField(max_length=120, null=False)
+    on_delete=models.CASCADE, 
+    primary_key=True)
+    fullName = models.CharField(max_length=120, null=True)
     birthDate = models.DateField(null = False)
     male = models.CharField(max_length=30, null=False)
     feminine = models.CharField(max_length=30, null=False)

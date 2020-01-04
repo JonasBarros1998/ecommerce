@@ -28,15 +28,13 @@ class CommenstViewSet(ModelViewSet):
             comment = request.data["comments"],
             date = request.data["date"]
             )
-
         comments.save()
 
         comments.product.add(
             request.data["product"]
             )
-            
+        
         return Response({"response": request.data})
-    
 
     def list(self, request, *args, **kwargs):
 
