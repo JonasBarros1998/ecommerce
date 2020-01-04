@@ -6,5 +6,6 @@ class AuthenticationSerializer(ModelSerializer):
         model = User
         fields = [
             'id',
-            'username'
+            'username',
+            'first_name'
         ]

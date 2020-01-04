@@ -4,6 +4,7 @@
 
 *.pyc
 
+*/*/*/*/__pycache__/
 */*/*/__pycache__/
 */*/__pycache__/
 */__pycache__/
@@ -16,6 +17,8 @@ chart/migrations/
 authentication/migrations/
 products/migrations/
 comments/migrations/
+users/migrations
+slides/migrations
 
 
 */__init__.py

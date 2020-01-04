@@ -16,9 +16,9 @@ from djangoQuerySet.djangoQuerySet import djangoQuerySet
 
 class CftvViewSet(SaveFileBucket,ModelViewSet):
 
-    serializer_class = CftvSerializer
     model = Cftv
     parser_class = [FileUploadParser]
+    serializer_class = CftvSerializer
 
     def __init__(self):
         super().__init__()
@@ -67,8 +67,7 @@ class CftvViewSet(SaveFileBucket,ModelViewSet):
             product.mediaSix.name: request.data["mediaSix"]
         }
         self.requestImages('code-images-and-videos',
-                           requestImages=dictRequestImages)
-        """
+                           requestImages=dictRequestImages)"""
 
         return Response({"status": "OK"}, status=status.HTTP_201_CREATED)
 
