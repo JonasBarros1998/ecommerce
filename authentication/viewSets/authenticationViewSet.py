@@ -23,4 +23,4 @@ class AuthenticationViewSet(ModelViewSet):
     def searchUserId(self, request):
         queryset = User.objects.filter(username = request.data['username'])
         userQuerySet = self.__djangoQuerySet.querySetSerializer(queryset, self.serializer_class)
-        return Response({"response": userQuerySet}, status=status.HTTP_202_ACCEPTED)
+        return Response({"response": userQuerySet}, status = status.HTTP_202_ACCEPTED)

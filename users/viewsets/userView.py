@@ -4,6 +4,7 @@ from rest_framework import status
 from django.contrib.auth.models import User
 from users.serializer.UserSerializer import UserSerializer
 from users.models import RegisterUser
+from ..helpers.formatting import formattingName
 
 class UserView(ViewSet):
 
@@ -30,10 +31,12 @@ class UserView(ViewSet):
             Por conta disso ao cadastrar um usuario, invertemos as informações,
         o campo username terá o e-mail do usuario, com isso, conseguimos que
         o login seja feito com o e-mail e não com o nome de usuario. '''
-       
+        name = formattingName(request.data['fullName'])
         user = User.objects.create_user(
-            username=request.data['user']['email'],
-            password=request.data['user']['password'])
+            username = request.data['user']['email'],
+            password = request.data['user']['password'],
+            first_name = name[0],
+            last_name= name[-1])
 
         registerUser = RegisterUser(
             fullName = request.data["fullName"],

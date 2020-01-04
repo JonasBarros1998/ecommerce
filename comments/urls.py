@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .api.commentsViewSeters import CommenstViewSet
+from .viewSets.commentViewSet import CommenstViewSet
 
 urlpatterns = [
     path("comments", CommenstViewSet.as_view({"get":"list", "post":"create"}), name="comments"),
