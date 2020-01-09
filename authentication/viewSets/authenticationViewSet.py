@@ -11,6 +11,7 @@ from oauth2_provider.contrib.rest_framework import OAuth2Authentication, TokenHa
 from djangoQuerySet.djangoQuerySet import djangoQuerySet
 from ..serializer.authenticationSerializer import AuthenticationSerializer
 
+
 class AuthenticationViewSet(ModelViewSet):
     authentication_classes = [OAuth2Authentication, SessionAuthentication]
     permission_classes = [TokenHasReadWriteScope]
@@ -19,8 +20,9 @@ class AuthenticationViewSet(ModelViewSet):
     def __init__(self):
         super().__init__()
         self.__djangoQuerySet = djangoQuerySet()
-        
+
     def searchUserId(self, request):
-        queryset = User.objects.filter(username = request.data['username'])
-        userQuerySet = self.__djangoQuerySet.querySetSerializer(queryset, self.serializer_class)
-        return Response({"response": userQuerySet}, status = status.HTTP_202_ACCEPTED)
+        queryset = User.objects.filter(username=request.data['username'])
+        userQuerySet = self.__djangoQuerySet.querySetSerializer(
+            queryset, self.serializer_class)
+        return Response({"response": userQuerySet}, status=status.HTTP_202_ACCEPTED)
