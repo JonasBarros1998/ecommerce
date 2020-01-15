@@ -1,0 +1,10 @@
+Esse modulo "fugiu" do padrão dos demais modulos, 
+por conta da forma que trabalha o django tookit.
+Como não achei uma de fazer a autenticação 
+separada por metodos(O modulo de comentario, por regra, 
+exige que apenas o metodo do fazer um novo comentario, 
+o usuario tenha que estar autenticado, os 
+demais metodos não tem necessidade de autenticação). 
+
+Por esse motivo não encontrei uma forma de autenticar
+apenas um metodo sem que atinja os demais metodos. 

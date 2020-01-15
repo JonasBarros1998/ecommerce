@@ -38,13 +38,15 @@ class CftvViewSet(SaveFileBucket,ModelViewSet):
             model = request.data['products']["model"],
             amount = request.data['products']["amount"],
             especification = request.data['products']['especification'],
-            categories = request.data['products']['categories'],
-            mediaOne=request.data['products']["mediaOne"],
-            mediaTwo=request.data['products']["mediaTwo"],
-            mediaThree=request.data['products']["mediaThree"],
-            mediaFour=request.data['products']["mediaFour"],
-            mediaFive=request.data['products']["mediaFive"],
-            mediaSix=request.data['products']["mediaSix"])
+            categories = request.data['products']['categories'])
+            
+            #mediaOne=request.data['products']["mediaOne"],
+            #mediaTwo=request.data['products']["mediaTwo"],
+            #mediaThree=request.data['products']["mediaThree"],
+            #mediaFour=request.data['products']["mediaFour"],
+            #mediaFive=request.data['products']["mediaFive"],
+            #mediaSix=request.data['products']["mediaSix"]
+            
         product.save()
 
         cftv = Cftv(
@@ -72,25 +74,21 @@ class CftvViewSet(SaveFileBucket,ModelViewSet):
         return Response({"status": "OK"}, status=status.HTTP_201_CREATED)
 
     def list(self, request=None, *args, **kwargs):
-
         cftvSerializer = self.__djangoQuerySet.listFull(
             self.model, self.serializer_class)
         return Response(cftvSerializer, status=status.HTTP_200_OK)
 
     def findOne(self, request, ids):
-
         cftvSerializer = self.__djangoQuerySet.filterOne(
             ids, self.model, CftvSerializer)
         return Response(cftvSerializer, status=status.HTTP_200_OK)
 
     def findPrice(self, request, price):
-
         cftvSerializer = self.__djangoQuerySet.filterPrice(
             price, self.model, CftvSerializer)
         return Response(cftvSerializer, status=status.HTTP_200_OK)
 
     def findMake(self, request, make):
-
         cftvSerializer = self.__djangoQuerySet.filterString(
             make, self.model, CftvSerializer)
         return Response(cftvSerializer, status=status.HTTP_200_OK)

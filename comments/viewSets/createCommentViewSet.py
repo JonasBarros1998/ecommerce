@@ -15,20 +15,25 @@ class CreateCommentViewSet(ModelViewSet):
                               
     permission_classes = [TokenHasReadWriteScope]
 
-    def __init__(self):
-        ...
-
-    """Adicionar um novo comentario, para isso o usuario 
-    tem que estar autenticado"""
-    def create(self, request, *args, **kwargs):
-        user = User.objects.get(id=request.data['user_id'])
+    """
+        Função para pegar o nome do usuario, realizando 
+    uma consulta no banco atraves do ID do usuario, 
+    provindo do localStorage do navegador do usuario
+    """
+    def searchUser(self, userId):
+        user = User.objects.get(id=userId)
         first_name = user.first_name
         last_name = user.last_name
-        name = f'{first_name} {last_name}'
+        return f'{first_name} {last_name}'
+
+    def create(self, request, *args, **kwargs):
+       
+        nameUser = self.searchUser(request.data['user_id'])
 
         comments = Comments(
-            comment=request.data["comments"],
-            name=name)
+            name = nameUser,
+            comment = request.data["comment"],
+            avaliation = request.data['avaliation'])
         comments.save()
 
         comments.product.add(request.data["product"])
