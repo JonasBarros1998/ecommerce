@@ -9,5 +9,5 @@ class Comments(models.Model):
     product = models.ManyToManyField(Product)
     #Comentario do cliente
     comment = models.TextField(null = False)
-    avaliation = models.IntegerField(null = True)
+    avaliation = models.IntegerField(null = False)
     date = models.DateField(max_length = 50, auto_now_add = True, null = True)
