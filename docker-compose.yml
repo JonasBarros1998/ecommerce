@@ -1,0 +1,31 @@
+version: '2.2'
+services: 
+    db:
+        image: postgres
+        environment: 
+            - POSTGRES_USER=username
+            - POSTGRES_PASSWORD=password
+            - POSGRES_DB=ecommerce
+        networks: 
+            - ecommerce-networks
+
+    ecommerce:
+        build: 
+            dockerfile: Dockerfile
+            context: .
+        image: jonasflorencio/ecommerce
+        container_name: ecommerce
+        volumes: 
+            - volumes
+        ports: 
+            - "8000:8000"
+        networks: 
+            - ecommerce-networks
+        depends_on: 
+            - 'db'
+        links: 
+            - 'db'
+
+networks: 
+    ecommerce-networks:
+        driver: bridge

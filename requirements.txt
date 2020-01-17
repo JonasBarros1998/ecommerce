@@ -8,5 +8,5 @@ psycopg2==2.8.4
 pylint==2.4.4
 pycodestyle==2.5.0
 python-dotenv==0.10.3
-boto3==1.10.43
-awscli==1.16.307
+boto3==1.11.3
+awscli==1.17.3
