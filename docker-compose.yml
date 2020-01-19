@@ -14,17 +14,6 @@ services:
         networks: 
             - ecommerce-networks
 
-    pgadmin:
-        image: dpage/pgadmin4
-        environment: 
-            - PGADMIN_DEFAULT_EMAI=${PGADMIN_DEFAULT_EMAIL}
-            - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
-        container_name: pgadmin4
-        ports: 
-            - "15434:80"
-        networks: 
-            - ecommerce-networks
-
     ecommerce:
         build: 
             dockerfile: dockerfile
@@ -38,7 +27,6 @@ services:
         networks: 
             - ecommerce-networks
         depends_on: 
-            - "pgadmin"
             - "ecommercedatabase"
         links: 
             - "ecommercedatabase"
