@@ -20,7 +20,6 @@ comments/migrations/
 users/migrations
 slides/migrations
 
-
 */__init__.py
 info.md
 .vscode
@@ -38,3 +37,7 @@ README.md
 .pyc*
 
 venv
+
+docker-compose.yml
+init.sql
+my-postgres.conf

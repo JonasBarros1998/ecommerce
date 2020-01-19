@@ -1,30 +1,47 @@
 version: '2.2'
 services: 
-    db:
+    ecommercedatabase:
         image: postgres
         environment: 
-            - POSTGRES_USER=username
-            - POSTGRES_PASSWORD=password
-            - POSGRES_DB=ecommerce
+            - POSTGRES_USER=${NAME_USER_DB}
+            - POSTGRES_PASSWORD=${PASSWORD_USER_DB}
+            - POSTGRES_DB=${NAME_DATA_BASE}
+        container_name: ecommerce-db
+        ports: 
+            - "5433:5432"
+        volumes: 
+           - "/home/jonas/db:/var/lib/postgresql/data"
+        networks: 
+            - ecommerce-networks
+
+    pgadmin:
+        image: dpage/pgadmin4
+        environment: 
+            - PGADMIN_DEFAULT_EMAI=${PGADMIN_DEFAULT_EMAIL}
+            - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
+        container_name: pgadmin4
+        ports: 
+            - "15434:80"
         networks: 
             - ecommerce-networks
 
     ecommerce:
         build: 
-            dockerfile: Dockerfile
+            dockerfile: dockerfile
             context: .
         image: jonasflorencio/ecommerce
         container_name: ecommerce
         volumes: 
-            - volumes
+            - /home/jonas/Code/ecommerce:/home/jonas/Code
         ports: 
             - "8000:8000"
         networks: 
             - ecommerce-networks
         depends_on: 
-            - 'db'
+            - "pgadmin"
+            - "ecommercedatabase"
         links: 
-            - 'db'
+            - "ecommercedatabase"
 
 networks: 
     ecommerce-networks:
