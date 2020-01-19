@@ -17,8 +17,8 @@ chart/migrations/
 authentication/migrations/
 products/migrations/
 comments/migrations/
-users/migrations
-slides/migrations
+users/migrations/
+slides/migrations/
 
 */__init__.py
 info.md
@@ -37,7 +37,7 @@ README.md
 .pyc*
 
 venv
-
+.env
 docker-compose.yml
 init.sql
 my-postgres.conf
