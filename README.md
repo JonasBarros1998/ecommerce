@@ -38,20 +38,19 @@ docker-compose up
 ```
 7. Rode alguns comando dentro do container.
 ```
-docker-compose exec -it ecommerce python manage.py migrate
-docker-compose exec -it ecommerce python manage.py makemigrations
-docker compose exec -it ecommerce python manage.py migrate
+docker exec -it ecommerce python manage.py migrate
+docker exec -it ecommerce python manage.py makemigrations
+docker exec -it ecommerce python manage.py migrate
 ```
-
 Ao todo terão que ser criadas 22 tabelas no banco de dados, se verificar que não foram criadas todas as tabelas, verifique o módulo referente aquela tabela e digite o seguinte comando. 
 
 ```
-docker-compose exec -it ecommerce python manage.py makemigrations user
+docker exec -it ecommerce python manage.py makemigrations user
 ```
 
 8. Crie um novo usuário. 
 ```
-docker-compose exec -it ecommerce python manage.py createsuperuser
+docker exec -it ecommerce python manage.py createsuperuser
 ```
 Acesse a url localhost://8000/admin, faça o login com nome e senha que você acabou de cadastrar. 
 
