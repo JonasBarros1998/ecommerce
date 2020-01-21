@@ -1,5 +1,17 @@
 version: '2.2'
 services: 
+
+    ecommerce-mongodb:
+        image: mongo 
+        container_name: ecommerce-mongodb
+        environment: 
+            MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+            MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+        ports: 
+            - "27017:27017"
+        networks: 
+            - ecommerce-networks
+
     ecommercedatabase:
         image: postgres
         environment: 

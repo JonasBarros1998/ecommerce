@@ -13,6 +13,5 @@ class SlideViewset(ListingFilesBucket, ModelViewSet):
         return super().listing(bucketname)
     
     def list(self, request):
-
         listingKeys = self.listing(bucketname = "ecommerce-slide")
         return Response({"keys": listingKeys}, status = status.HTTP_200_OK)
