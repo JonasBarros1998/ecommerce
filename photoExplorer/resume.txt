@@ -1,0 +1,11 @@
+Modulo photoExplorer
+
+Esse modulo tem como objetivo fazer o gerenciamento de fotos do ecommerce. 
+Existe interfaces para visualização e exclusão, 
+Posteriormente também terá informações especificas de tamanho do arquivo, extensão, data e hora.
+Esse modulo é idependente dos demais modulos da aplicação. Esse modulo não poderá importar outros 
+modulos do ecommerce. Porém é permitido importar modulos com pypi. 
+
+Implementar uma interface com um método para salvar imagens
+Implementar uma interface para listagem de imagens
+Aprender a fazer coisas basicas na API do python do mongo
