@@ -29,8 +29,8 @@ class InsertImages(IAuthenticationMongoDb, ErrorsMongoDb):
         mongoUsername = os.getenv('MONGO_INITDB_ROOT_USERNAME')
         mongoPassword = os.getenv('MONGO_INITDB_ROOT_PASSWORD')
         mongoClient = MongoClient(host="ecommerce-mongodb", port=27017,
-                                  username=mongoUsername,
-                                  password=mongoPassword, )
+                                        username=mongoUsername,
+                                        password=mongoPassword, )
         return mongoClient
 
     # Inserir o link das imagen com um dict
