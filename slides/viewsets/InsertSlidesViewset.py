@@ -16,6 +16,6 @@ class CreateImages(ModelViewSet):
     
     def create(self, request):
         slides = request.data['slides']
-        teste = self.insert.InsertImages(self._database, self._collection, datas = slides)
-        return Response({"response":teste}, status=status.HTTP_201_CREATED)
+        self.insert.InsertImages(self._database, self._collection, datas = slides)
+        return Response({"response":"created"}, status=status.HTTP_201_CREATED)
 
