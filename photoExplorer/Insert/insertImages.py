@@ -9,7 +9,6 @@ from ..errors.IAuthenticationMongoDb import IAuthenticationMongoDb
 load_dotenv()
 env_path = Path('.') / '.env'
 
-
 class InsertImages(IAuthenticationMongoDb, ErrorsMongoDb):
 
     def __init__(self):
@@ -34,9 +33,9 @@ class InsertImages(IAuthenticationMongoDb, ErrorsMongoDb):
         return mongoClient
 
     # Inserir o link das imagen com um dict
-    def InsertImages(self, database: str, collection: str, datas: "dict or array"):
+    def insert(self, database: str, collection: str, datas: "dict or array"):
         """
-            Método para inserir o nome das imagens dentro de uma coleção no mongodb. 
+            Método para inserir o link das imagens dentro de uma coleção no mongodb. 
             Parametros: 
 
             `database`: "Nome da base de dados, criada no mongo"
