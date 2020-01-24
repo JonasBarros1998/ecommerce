@@ -6,6 +6,9 @@ from products.categories.categorieCftv.viewsets.CftvViewSet import CftvViewSet
 from products.api.Categories.AirPhones.airPhonesViewSet import AirPhonesViewSet
 from products.api.Categories.SmartWatch.smartWathViewSet import SmartWathViewSet
 
+from products.categories.categorieName.viewsets.categorieNameViewset import CategorieNameViewSet  
+from products.categories.categorieName.viewsets.InsertCategorieNameViewSet import InsertCategorieNameViewSet
+
 urlpatterns = [
 
     #Rota para cadastro de produtos em geral
@@ -28,5 +31,9 @@ urlpatterns = [
     #Rotas para produtos de smartwatch
     path('products/smartWatch', SmartWathViewSet.as_view({'post':'create', 'get':'list'}), name='smartWatch'),
     path('products/smartWatch/<int:smart_watch_ids>', SmartWathViewSet.as_view({'get':'findOne'}), name='findOneSmartWatch'),
-    path('products/smartWatch/<str:smart_watch_make>', SmartWathViewSet.as_view({'get':'findMakeAll'}), name='findMakeAll')
+    path('products/smartWatch/<str:smart_watch_make>', SmartWathViewSet.as_view({'get':'findMakeAll'}), name='findMakeAll'),
+
+    #Rota salvar e listar as principais categories vendidas no ecommerce
+    path('products/name-categorie/list', CategorieNameViewSet.as_view({'get':'list'}), name='list_categorie'),
+    path('products/name-categorie/insert', InsertCategorieNameViewSet.as_view({'post':'create'}), name="create_categorie")
 ]

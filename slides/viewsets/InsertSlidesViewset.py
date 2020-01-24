@@ -10,12 +10,12 @@ class CreateImages(ModelViewSet):
 
     def __init__(self):
         super().__init__()
-        self.insert = InsertImages()
+        self._insert = InsertImages()
         self._database = "PhotoExplorer"
         self._collection = "Slide"
     
     def create(self, request):
         slides = request.data['slides']
-        self.insert.InsertImages(self._database, self._collection, datas = slides)
+        self._insert.insert(self._database, self._collection, datas = slides)
         return Response({"response":"created"}, status=status.HTTP_201_CREATED)
 
