@@ -51,6 +51,7 @@ class SearchImages(IAuthenticationMongoDb):
         `database` Nome da dabase do mongo
 
         `collection` Nome da collection do mongo
+        
         """
         listImages = []
         mongoClient = self.config()
