@@ -14,7 +14,8 @@ class ProductsSerializer(ModelSerializer):
             "model", 
             "amount",
             "especification",
-            "categories"]
+            "categories", 
+            "media"]
         
 class ProductsSerializerMake(ModelSerializer):
     class Meta:
