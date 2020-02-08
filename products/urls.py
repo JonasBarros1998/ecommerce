@@ -5,7 +5,9 @@ from products.categories.categorieCftv.viewsets.CftvViewSet import CftvViewSet
 from products.categories.categorieCftv.viewsets.createCftvViewset import CreateCftvViewset
 
 from products.api.Categories.AirPhones.airPhonesViewSet import AirPhonesViewSet
-from products.api.Categories.SmartWatch.smartWathViewSet import SmartWathViewSet
+
+from products.categories.smartWatch.viewset.createSmartwatchViewset import CreateSmartwatchViewset
+from products.categories.smartWatch.viewset.smartWathViewSet import SmartWathViewSet
 
 from products.categories.categorieName.viewsets.categorieNameViewset import CategorieNameViewSet  
 from products.categories.categorieName.viewsets.InsertCategorieNameViewSet import InsertCategorieNameViewSet
@@ -31,9 +33,10 @@ urlpatterns = [
     path('products/airPhone/<str:air_phone_make>', AirPhonesViewSet.as_view({'get':'findMakeAll'}), name="airPhoneMake"),
 
     #Rotas para produtos de smartwatch
-    path('products/smartWatch', SmartWathViewSet.as_view({'post':'create', 'get':'list'}), name='smartWatch'),
-    path('products/smartWatch/<int:smart_watch_ids>', SmartWathViewSet.as_view({'get':'findOne'}), name='findOneSmartWatch'),
-    path('products/smartWatch/<str:smart_watch_make>', SmartWathViewSet.as_view({'get':'findMakeAll'}), name='findMakeAll'),
+    path('products/smartwatch', SmartWathViewSet.as_view({'get': 'list'}), name='smartWatch'),
+    path('products/smartwatch/', CreateSmartwatchViewset.as_view({'post': 'create'}), name = 'createSmartwatch'),
+    path('products/smartwatch/<int:smart_watch_ids>', SmartWathViewSet.as_view({'get':'findOne'}), name='findOneSmartwatch'),
+    path('products/smartwatch/<str:smart_watch_make>', SmartWathViewSet.as_view({'get':'findMakeAll'}), name='findSmartwatch'),
 
     #Rota salvar e listar as principais categories vendidas no ecommerce
     path('products/name-categorie/list', CategorieNameViewSet.as_view({'get':'list'}), name='list_categorie'),

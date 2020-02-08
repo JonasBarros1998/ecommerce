@@ -1,3 +1,7 @@
+"""
+Modulo especifico para cadastro  e listagem de produtos.
+"""
+
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.viewsets import ModelViewSet

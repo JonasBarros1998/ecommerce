@@ -23,14 +23,14 @@ class Cftv(models.Model):
                                     related_name='product',
                                     related_query_name="products")
 
-
 class SmartWatch(models.Model):
 
-    waterProof = models.BooleanField(null=False)
+    waterProof = models.CharField(null=False, max_length=30)
     color = models.CharField(max_length=20, null=False)
     heartRate = models.CharField(max_length=120, null=False)
-    products = models.OneToOneField(Product, on_delete=models.CASCADE)
-
+    products = models.OneToOneField(Product, on_delete=models.CASCADE,
+                                    related_name='smartwatch_product',
+                                    related_query_name="smartwatch_products")
 
 class AirPhones(models.Model):
 
