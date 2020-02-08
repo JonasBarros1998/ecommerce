@@ -19,10 +19,8 @@ class djangoQuerySet:
 
     # Filtrar somente um produto, usado para reinderização de detalhes de um produto
     def filterOne(self, ids, model, classSerializer: "class serializer", many=True, read_only=False):
-
         queryset = model.objects.filter(id=ids)
         serializer = classSerializer(queryset, many=many, read_only=read_only)
-
         return serializer.data
 
     # Filtrar por preços

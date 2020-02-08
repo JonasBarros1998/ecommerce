@@ -12,6 +12,7 @@ class SmartWatchSerializer(ModelSerializer):
         model = SmartWatch
 
         fields = [
+            'id',
             'waterProof',
             'color', 
             'heartRate',
