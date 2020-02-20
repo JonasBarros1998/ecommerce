@@ -17,3 +17,4 @@ class Register(models.Model):
 class Forgot(models.Model):
     hash_link = models.CharField(max_length = 300)
     datetime = models.DateTimeField(default = timezone.now)
+    username = models.CharField(max_length=200, null=False)

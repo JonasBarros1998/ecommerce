@@ -11,7 +11,8 @@ class DateTime:
     def __init__(self, _datetime):
         self._datetime = datetime.fromisoformat(str(_datetime))
         self._sumDateCurrent = datetime.now()
-
+    
+    #metodo para calcular a data
     def calculateDate(self):
         date = self._datetime.fromisoformat(str(self._datetime))
         #Soma a data de expiração Ex: 14/02/2020 = 2036
@@ -24,7 +25,8 @@ class DateTime:
             "sumDateExpire": sumDateExpire,
             "sumDateCurrent": sumDateCurrent
         }
-
+    
+    #Metodo para calcular a experação do link
     def expire(self, itemDatetime):
         dates = self.calculateDate()
         hourExpire = datetime.fromisoformat(str(itemDatetime))
