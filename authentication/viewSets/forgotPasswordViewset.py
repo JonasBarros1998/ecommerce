@@ -21,6 +21,8 @@ from ..utils.updatePassword import update
 load_dotenv()
 env_path = Path('.') / '.env'
 
+
+
 class ForgotPasswordViewset(ModelViewSet):
     def __init__(self):
         self._checkUsername = CheckUsername()
