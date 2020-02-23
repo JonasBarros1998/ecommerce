@@ -20,8 +20,8 @@ class ProductsViewSet(ModelViewSet):
     Model = Product
     serializer_class = ProductsSerializer
 
-    authentication_classes = [OAuth2Authentication, SessionAuthentication]
-    permission_classes = [TokenHasReadWriteScope]
+    #authentication_classes = [OAuth2Authentication, SessionAuthentication]
+    #permission_classes = [TokenHasReadWriteScope]
 
     def __init__(self):
         self.__djangoQuerySet = djangoQuerySet()
@@ -31,6 +31,11 @@ class ProductsViewSet(ModelViewSet):
         productsSerializer.is_valid(raise_exception=True)
         self.perform_create(productsSerializer)
         return Response(productsSerializer.data, status=status.HTTP_201_CREATED)
+    
+    def list(self, request): 
+        #Método provisório para listagem de todos os produtos
+        listProducts = self.__djangoQuerySet.listFull(self.Model, self.serializer_class)
+        return Response(listProducts, status=status.HTTP_200_OK)
 
     def findMakeAll(self, request):
 
@@ -57,7 +62,8 @@ class ProductsViewSet(ModelViewSet):
         categories = categories.lower()
         response = AllCategories().methodsCategories(categories)
         serializer = response.data
-        return Response(serializer, status=status.HTTP_200_OK)
+        return Response(serializer, status=status.HTTP_200_OK) 
 
     def classification(self, request, order):
         pass
+
