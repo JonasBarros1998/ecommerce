@@ -13,16 +13,21 @@ from products.categories.smartWatch.viewset.smartWathViewSet import SmartWathVie
 from products.categories.categorieName.viewsets.categorieNameViewset import CategorieNameViewSet
 from products.categories.categorieName.viewsets.InsertCategorieNameViewSet import InsertCategorieNameViewSet
 
-
 urlpatterns = [
 
     # Rota para cadastro de produtos em geral
-    path('products', ProductsViewSet.as_view(
+    path('products/', ProductsViewSet.as_view(
         {'get': 'list', 'post': 'create'}), name='products'),
-    path('products/make',
-         ProductsViewSet.as_view({'get': 'findMakeAll'}), name='makeProducts'),
+
+    path('products/make', ProductsViewSet.as_view(
+         {'get': 'findMakeAll'}), name='makeProducts'),
+
+    path('products/one-make/<str:make>', ProductsViewSet.as_view(
+         {'get': 'findOneMake'}), name='makeOneProducts'),
+
     path('products/categories',
          ProductsViewSet.as_view({'get': 'findCategoriesAll'}), name='findCategories'),
+
     path('products/categories/<str:categories>',
          ProductsViewSet.as_view({'get': 'findOneCategories'}), name="findOneCategories"),
 

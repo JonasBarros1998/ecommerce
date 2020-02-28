@@ -2,7 +2,6 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.authentication import SessionAuthentication
-
 from oauth2_provider.contrib.rest_framework import TokenHasReadWriteScope, OAuth2Authentication
 
 from djangoQuerySet.djangoQuerySet import djangoQuerySet
