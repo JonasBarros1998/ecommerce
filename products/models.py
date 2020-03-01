@@ -3,7 +3,7 @@ from django.db import models
 
 class Product(models.Model):
 
-    title = models.CharField(max_length=200, null=False)
+    name = models.CharField(max_length=200, null=False)
     price = models.FloatField(null=False)
     description = models.CharField(max_length=250, null=False)
     fullDescription = models.TextField(null=False)
@@ -11,7 +11,7 @@ class Product(models.Model):
     model = models.CharField(max_length=50, null=False)
     amount = models.IntegerField(null=False)
     especification = models.TextField(null=False)
-    categories = models.CharField(max_length=100, null=False)
+    categorie = models.CharField(max_length=100, null=False)
     media = models.CharField(max_length=300, null=True)
 
 class Cftv(models.Model):
@@ -34,9 +34,9 @@ class SmartWatch(models.Model):
 
 class AirPhones(models.Model):
 
-    waterProof = models.BooleanField(null=False)
-    bateryPhone = models.CharField(max_length=50, null=False)
-    bateryCase = models.CharField(max_length=30, null=False)
-    voiceControl = models.BooleanField(null=False)
+    waterProof = models.CharField(null = False, max_length = 10)
+    bateryPhone = models.CharField(max_length = 50, null = False)
+    bateryCase = models.CharField(max_length = 30, null = False)
+    voiceControl = models.CharField(null = False, max_length = 10)
     products = models.OneToOneField(Product, on_delete=models.CASCADE,
                                     related_query_name='products')

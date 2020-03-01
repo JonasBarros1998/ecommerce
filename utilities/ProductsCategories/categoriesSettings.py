@@ -29,9 +29,9 @@ class AllCategories:
     def __importFilesCategories(self):
 
         filesCategories = {
-            "cftv": __import__('products.api.Categories.Cftv.CftvViewSet', globals(), locals(), ['CftvViewSet'], 0),
-            "smartwatch": __import__('products.api.Categories.SmartWatch.smartWathViewSet', globals(), locals(), ['smartWatchViewSet'], 0),
-            "airphone": __import__('products.api.Categories.AirPhones.airPhonesViewSet', globals(), locals(), ['AirPhonesViewSet'], 0)
+            "cftv": __import__('products.categories.categorieCftv.viewsets.CftvViewSet', globals(), locals(), ['CftvViewSet'], 0),
+            "smartwatch": __import__('products.categories.smartWatch.viewset.smartWathViewSet', globals(), locals(), ['smartWatchViewSet'], 0),
+            "airphone": __import__('products.categories.airphones.viewsets.airPhonesViewSet', globals(), locals(), ['AirphonesViewSet'], 0)
         }
 
         return filesCategories
@@ -53,5 +53,5 @@ class AllCategories:
     def __fileAirPhone(self):
 
         fileCategories = self.__importFilesCategories()
-        categorieAirPhone = fileCategories['airphone'].AirPhonesViewSet()
+        categorieAirPhone = fileCategories['airphone'].AirphonesViewSet()
         return categorieAirPhone.list()

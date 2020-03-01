@@ -2,7 +2,7 @@ import os
 from dotenv import load_dotenv
 from pathlib import Path
 
-#Config dotenv
+# Config dotenv
 load_dotenv()
 env_path = Path('.') / '.env'
 
@@ -89,7 +89,7 @@ WSGI_APPLICATION = 'ecommerce.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 DATABASES = {
     'default': {
-       'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': os.getenv('NAME_DATA_BASE'),
         'USER': os.getenv('NAME_USER_DB'),
         'PASSWORD': os.getenv('PASSWORD_USER_DB'),
@@ -116,22 +116,22 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
     ],
-    # Ativando essa tupla, fará que todas as classes da aplicação terão 
+    # Ativando essa tupla, fará que todas as classes da aplicação terão
     # obrigatoriamente que fazer authenticação...
     # 'DEFAULT_PERMISSION_CLASSES': (
     #    'rest_framework.permissions.IsAuthenticated',
-    #)
+    # )
+    # Classe para paginação
 }
 
 OAUTH2_PROVIDER = {
     'OAUTH2_BACKEND_CLASS': 'oauth2_provider.oauth2_backends.JSONOAuthLibCore',
     # this is the list of available scopes
-    'SCOPES': 
+    'SCOPES':
     {
         'read': 'Read scope', 'write': 'Write scope', 'groups': 'Access to your groups'
     }
@@ -140,10 +140,10 @@ OAUTH2_PROVIDER = {
 ROOT_URLCONF = 'ecommerce.urls'
 
 
-#Configurações de e-mail 
+# Configurações de e-mail
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST ='smtp.gmail.com'
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_PORT = os.getenv('EMAIL_PORT')
@@ -159,10 +159,10 @@ USE_TZ = True
 
 DATE_INPUT_FORMATS = ['%Y-%m-%d']
 
-#Nome da url
+# Nome da url
 MEDIA_URL = '/media/'
 
-#Pasta onde vou salvar os arquivos de media
+# Pasta onde vou salvar os arquivos de media
 MEDIA_ROOT = '_imagesAndVideos'
 
 TIME_ZONE = 'America/Sao_Paulo'
