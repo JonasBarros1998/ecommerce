@@ -3,7 +3,6 @@ from rest_framework.response import Response
 import json
 import sys
 
-
 class djangoQuerySet:
 
     def __init__(self):
@@ -11,7 +10,6 @@ class djangoQuerySet:
 
      # Filtrar todos os produtos apartir de um item
     def listFull(self, model, classSerializer: "class serializer", many=True, read_only=False):
-
         queryset = model.objects.all()
         serializer = classSerializer(
             queryset, many=many, read_only=read_only)
@@ -90,6 +88,5 @@ class djangoQuerySet:
 
     def querySetSerializer(self, queryset, classSerializer: "class serializer", 
                             many=True, read_only=False):
-
         serializer = classSerializer(queryset, many=many, read_only=read_only)
         return serializer.data
