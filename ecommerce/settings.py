@@ -33,7 +33,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'authentication',
     'corsheaders',
-    'chart',
+    'client',
     'comments',
     'gatewayPayments',
     'mainProducts',

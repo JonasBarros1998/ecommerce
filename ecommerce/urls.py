@@ -9,5 +9,6 @@ urlpatterns = [
     path('jm-ecommerce/', include('users.urls')),
     path('jm-ecommerce/', include('slides.urls')),
     path('jm-ecommerce/', include('authentication.urls')),
-    path('jm-ecommerce/', include('mainProducts.urls'))
+    path('jm-ecommerce/', include('mainProducts.urls')),
+    path("jm-ecommerce/", include('client.urls'))
 ]

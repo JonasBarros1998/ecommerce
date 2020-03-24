@@ -20,6 +20,7 @@ class AuthenticationViewSet(ModelViewSet):
         super().__init__()
         self.__djangoQuerySet = djangoQuerySet()
 
+    #Fazer a pesquisa de um usuario especifico
     def searchUserId(self, request):
         queryset = User.objects.filter(username=request.data['username'])
         userQuerySet = self.__djangoQuerySet.querySetSerializer(
