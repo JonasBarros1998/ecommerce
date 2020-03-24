@@ -36,16 +36,8 @@ class ProductsViewSet(ModelViewSet):
 
     # Listar todos os produtos cadastrados
     def list(self, request):
-        self._params.url_params(request)
-        paginator = Paginator(self._products, 2)
-
-        page = request.query_params['page']
-        products = paginator.page(page)
-
-        serializer = ProductsSerializer(products.object_list, many = True,
-                                        read_only = False)
-        return Response(serializer.data,
-                        status = status.HTTP_200_OK)
+        response = self.__djangoQuerySet.listFull(self.Model, self.serializer_class)
+        return Response(response, status = status.HTTP_200_OK)
 
     # Metodo para filtrar todas as marcas vendidas no ecommerce
     def findMakeAll(self, request):

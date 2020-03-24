@@ -38,9 +38,9 @@ class InsertImages(IAuthenticationMongoDb, ErrorsMongoDb):
             Método para inserir o link das imagens dentro de uma coleção no mongodb. 
             Parametros: 
 
-            `database`: "Nome da base de dados, criada no mongo"
-            `collection`: "Nome da collection criada no mongodb"
-            `datas`: "dict ou um array de objetos"
+            `database`: Nome da base de dados, criada no mongo
+            `collection`: Nome da collection criada no mongodb
+            `datas`: dict ou um array de objetos
         """
         self.invalidData(datas)
         if(type(datas) == dict):

@@ -1,30 +1,51 @@
 version: '2.2'
 services: 
-    db:
+    ecommerce-mongodb:
+        image: mongo 
+        container_name: ecommerce-mongodb
+        environment: 
+            MONGO_INITDB_ROOT_USERNAME: ${}
+            MONGO_INITDB_ROOT_PASSWORD: ${}
+        volumes: 
+            - "/home/jonas/mongodb:/var/lib/mongodb"
+        ports: 
+            - "27017:27017"
+        networks: 
+            - ecommerce-networks
+
+    ecommercedatabase:
         image: postgres
         environment: 
-            - POSTGRES_USER=user
-            - POSTGRES_PASSWORD=password
-            - POSGRES_DB=database
+            - POSTGRES_USER=${}
+            - POSTGRES_PASSWORD=${}
+            - POSTGRES_DB=${}
+            - PYTHONUNBUFFERED=0
+        container_name: ecommerce-db
+        ports: 
+            - "5433:5432"
+        volumes: 
+           - "/home/jonas/db:/var/lib/postgresql/data"
         networks: 
             - ecommerce-networks
 
     ecommerce:
         build: 
-            dockerfile: Dockerfile
+            dockerfile: dockerfile
             context: .
         image: jonasflorencio/ecommerce
         container_name: ecommerce
         volumes: 
-            - volumes
+            - ""
         ports: 
             - "8000:8000"
         networks: 
             - ecommerce-networks
         depends_on: 
-            - 'db'
+            - "ecommercedatabase"
+            - "ecommerce-mongodb"
         links: 
-            - 'db'
+            - "ecommerce-mongodb"
+            - "ecommercedatabase"
 
 networks: 
     ecommerce-networks:
