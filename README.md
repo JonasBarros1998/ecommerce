@@ -4,15 +4,7 @@ Esta em fase de desenvolvimento a api de ecommerce. Para isso está sendo utiliz
 
 ## Arquitetura
 A aplicação foi desenvolvida em módulos. Com isso existem algumas regras a serem seguidas, por exemplo: O módulo de produtos, não deverá importar explicitamente outros módulos da aplicação, resultando assim na reutilização desse módulo em outros sistema, sem ter ficar fazendo grandes alterações no código quando essa migração for realizada. 
-Porém caso surgir a necessidade de importar outros módulos, dentro da aplicação tem um arquivo chamado categoriesSettings que vai servir como intermediário, auxiliando  na importação de um módulo. 
-
-Alguns módulos estão passando por um processo de refatoração, ficando assim mais claro ao desenvolvedor onde está localizado cada funcionalidade. 
-Atualmente os módulos que já passaram por esse processo de refatoração foram: authentication, comments e products. 
-
-Com isso as estrutura de diretórios e arquivos estão sendo construídas da seguinte forma:
-serializer, viewSets, apps.py models.py, urls.py
-
-O módulo de produtos está estruturado um pouco diferente dos demais. Dentro existe um diretório Categories que estão todas as categorias dos produtos a serem vendidos no ecommerce. 
+Porém caso surgir a necessidade de importar outros módulos, dentro da aplicação tem um arquivo chamado categoriesSettings que vai servir como intermediário, auxiliando na importação de um módulo. 
 
 ## Como rodar a aplicação? 
 
