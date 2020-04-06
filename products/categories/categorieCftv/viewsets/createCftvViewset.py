@@ -11,7 +11,7 @@ class CreateCftvViewset(ModelViewSet):
     def create(self, request,  *args, **kwargs):
 
         product = Product(
-            title=request.data['products']["title"],
+            name=request.data['products']["title"],
             price=request.data['products']["price"],
             description=request.data['products']['description'],
             fullDescription=request.data['products']['fullDescription'],
@@ -19,7 +19,7 @@ class CreateCftvViewset(ModelViewSet):
             model=request.data['products']["model"],
             amount=request.data['products']["amount"],
             especification=request.data['products']['especification'],
-            categories=request.data['products']['categories'],
+            categorie=request.data['products']['categories'],
             media=request.data['products']['media'])
         product.save()
 
