@@ -1,15 +1,15 @@
 from django.urls import path, include
 from .viewSets.createCommentViewset import CreateCommentViewset
-#from .viewSets.commentsSearchViewSet import CommentsSearchViewSet
+from .viewSets.listingCommentsViewset import ListingCommentsViewset
 
 urlpatterns = [
+
+    # Criar um novo comentario
     path("create/comment/",
-         CreateCommentViewset.as_view({"post": "create"}), name="new_comment"),
-    
-    #path("comments", CommentsSearchViewSet.as_view(
-    #    {"get": "list"}), name="list_comments"),
-    
-    #path("comments/<int:id_product>",
-    #     CommentsSearchViewSet.as_view(
-    #         {"get": "productComments"}), name="comentsProducts")
+         CreateCommentViewset.as_view({"post": "create"}),
+         name="create_comment"),
+
+    # Listar todo os comentarios
+    path("comments/", ListingCommentsViewset.as_view({"get": "list"}),
+         name="list_comments")
 ]

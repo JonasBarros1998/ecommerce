@@ -12,7 +12,7 @@ class CreateCommentViewset(ModelViewSet):
     def create(self, request):
         database = 'client'
         collection = 'comments'
-        self.validate(request, fields = ['user', 'date', 'comment'])
+        self.validate(request, fields = ['id', 'user', 'date', 'comment'])
         datas = self.insert.insert_item(database, collection, request.data)
         return Response({"id": str(datas.inserted_id)}, status=status.HTTP_201_CREATED)
     

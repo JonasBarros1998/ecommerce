@@ -21,3 +21,5 @@ class CommentsSerializer(ModelSerializer):
             'avaliation',
             'date',
             'name']
+
+
