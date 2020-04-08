@@ -13,10 +13,10 @@ class ListingCommentsViewset(ModelViewSet):
 
     #Listar todos os comentarios relacionado ao produto 
     def list(self, request):
-        product_id = request.query_params['id']
+        product_id = request.query_params['product_id']
         database = 'client'
         collection = 'comments'
-        search = {'id': product_id}
+        search = {'product_id': int(product_id)}
         data_collection = self.__listing.search_indice(database, collection, search)
         for item in data_collection: 
             item['_id']  = str(item['_id'])
