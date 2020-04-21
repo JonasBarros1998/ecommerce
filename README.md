@@ -40,14 +40,6 @@ Ao todo terão que ser criadas 22 tabelas no banco de dados, se verificar que n�
 docker exec -it ecommerce python manage.py makemigrations user
 ```
 
-8. Crie um novo usuário. 
-```
-docker exec -it ecommerce python manage.py createsuperuser
-```
-Acesse a url localhost://8000/admin, faça o login com nome e senha que você acabou de cadastrar. 
-
-Pronto!! A aplicação já está configurada e pronta para o uso.
-
 ## Caso queira usar o pgadmin com docker, para verificação das tabelas faça o seguinte: 
 
 1. Baixe a imagem relacionada ao pgadmin4
